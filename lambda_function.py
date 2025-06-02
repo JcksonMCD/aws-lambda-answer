@@ -15,7 +15,7 @@ def lambda_handler(event, context):
         msg = body.get("message", "No message provided")
         return {
             'statusCode': 200,
-            'body': json.dumps({"message": f"Received: {msg}"}),
+            'body': json.dumps({"message": f"Hello World! {msg}"}),
             'headers': {'Content-Type': 'application/json'}
         }
 
