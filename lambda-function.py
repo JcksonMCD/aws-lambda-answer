@@ -1,9 +1,26 @@
 import json
 
 def lambda_handler(event, context):
-    print('Hello world running')
-    # TODO implement
+    method = event.get("httpMethod")
+
+    if method == "GET":
+        return {
+            'statusCode': 200,
+            'body': json.dumps({"message": "Hello World"}),
+            'headers': {'Content-Type': 'application/json'}
+        }
+
+    elif method == "POST":
+        body = json.loads(event.get("body", "{}"))
+        msg = body.get("message", "No message provided")
+        return {
+            'statusCode': 200,
+            'body': json.dumps({"message": f"Received: {msg}"}),
+            'headers': {'Content-Type': 'application/json'}
+        }
+
     return {
-        'statusCode': 200,
-        'body': json.dumps('Hello World!')
+        'statusCode': 405,
+        'body': json.dumps({"error": "Method Not Allowed"}),
+        'headers': {'Content-Type': 'application/json'}
     }
