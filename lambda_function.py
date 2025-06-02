@@ -1,9 +1,11 @@
 import json
+import os
 
 def lambda_handler(event, context):
     method = event.get("httpMethod")
 
     if method == "GET":
+        print("Get method used")
         return {
             'statusCode': 200,
             'body': json.dumps({"message": "Hello World"}),
@@ -11,6 +13,7 @@ def lambda_handler(event, context):
         }
 
     elif method == "POST":
+        print("Post method used")
         body = json.loads(event.get("body", "{}"))
         msg = body.get("message", "No message provided")
         return {
