@@ -53,6 +53,12 @@ def _httpPostString(event):
             'body': json.dumps({"error": "Invalid JSON format"}),
             'headers': {'Content-Type': 'application/json'}
         }
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps({"received": body}),
+        'headers': {'Content-Type': 'application/json'}
+    }
 
 def _basicEnvLogs(event):
     logger.info('## ENVIRONMENT VARIABLES')
