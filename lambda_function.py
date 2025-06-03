@@ -5,12 +5,11 @@ def lambda_handler(event, context):
     method = event.get("httpMethod")
 
     if method == "GET":
-        _httpGet
+        return _httpGet()
     
 
     elif method == "POST":
-        
-        _httpPostString(event)
+        return _httpPostString(event)
         
 
     return {
