@@ -3,7 +3,7 @@ import os
 import logging
 logger = logging.getLogger()
 log_level = os.environ.get("LOG_LEVEL", "INFO").upper()
-logger.setLevel(getattr(logging, log_level, logging.INFO))
+logging.basicConfig(level=getattr(logging, log_level, logging.INFO))
 
 
 def lambda_handler(event, context):
