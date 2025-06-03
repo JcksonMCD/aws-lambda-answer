@@ -9,7 +9,9 @@ def lambda_handler(event, context):
     
 
     elif method == "POST":
-        return _httpPostString(event)
+        body = json.loads(event.get("body", "{}"))
+        msg = body.get("message", "No message provided")
+        return _httpPostString(msg)
         
 
     return {
@@ -28,11 +30,10 @@ def _httpGet():
     }
 
 
-def _httpPostString(event):
+def _httpPostString(msg):
     print("Post method used")
 
-    body = json.loads(event.get("body", "{}"))
-    msg = body.get("message", "No message provided")
+    
 
     return {
         'statusCode': 200,
