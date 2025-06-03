@@ -52,6 +52,13 @@ def _httpPostString(event):
     logger.info("Post method used")
     try:
         body = json.loads(event.get("body", "{}"))
+        msg = body.get("message", "No message provided")
+
+        return {
+        'statusCode': 200,
+        'body': json.dumps({"message": f"Hello World! {msg}"}),
+        'headers': {'Content-Type': 'application/json'}
+    }
     except json.JSONDecodeError:
         logger.error("Invalid JSON in request body")
         return {
@@ -59,12 +66,7 @@ def _httpPostString(event):
             'body': json.dumps({"error": "Invalid JSON format"}),
             'headers': {'Content-Type': 'application/json'}
         }
-    
-    return {
-        'statusCode': 200,
-        'body': json.dumps({"received": body}),
-        'headers': {'Content-Type': 'application/json'}
-    }
+
 
 def _basicEnvLogs(event):
     logger.info('## ENVIRONMENT VARIABLES')
