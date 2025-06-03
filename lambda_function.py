@@ -5,7 +5,7 @@ logger = logging.getLogger()
 logger.setLevel("INFO")
 
 def lambda_handler(event, context):
-    _basicEnvLogs()
+    _basicEnvLogs(event)
 
     method = event.get("httpMethod")
 
