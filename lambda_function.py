@@ -2,7 +2,9 @@ import json
 import os
 import logging
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+log_level = os.environ.get("LOG_LEVEL", "INFO").upper()
+logger.setLevel(getattr(logging, log_level, logging.INFO))
+
 
 def lambda_handler(event, context):
     _basicEnvLogs(event)
