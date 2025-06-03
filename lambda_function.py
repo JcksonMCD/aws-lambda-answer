@@ -47,9 +47,10 @@ def _httpPostString(event):
 
 def _basicEnvLogs(event):
     logger.info('## ENVIRONMENT VARIABLES')
-    logger.info(os.environ['AWS_LAMBDA_LOG_GROUP_NAME', 'LOG_GROUP not found'])
-    logger.info(os.environ['AWS_LAMBDA_LOG_STREAM_NAME', 'LOG_STREAM not found'])
+    logger.info(os.environ.get('AWS_LAMBDA_LOG_GROUP_NAME', 'LOG_GROUP not found'))
+    logger.info(os.environ.get('AWS_LAMBDA_LOG_STREAM_NAME', 'LOG_STREAM not found'))
     logger.info('## EVENT')
     logger.info(event)
+
 
 
