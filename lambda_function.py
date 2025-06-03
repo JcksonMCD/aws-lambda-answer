@@ -2,13 +2,14 @@ import json
 import os
 import logging
 
-logger = logging.getLogger()
 log_level = os.environ.get("LOG_LEVEL", "INFO").upper()
-logging.basicConfig(
-    level=getattr(logging, log_level, logging.INFO),
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+numeric_level = getattr(logging, log_level, logging.INFO)
+
 logger = logging.getLogger()
+logger.setLevel(numeric_level)
+
+for handler in logger.handlers:
+    handler.setLevel(numeric_level)
 
 
 def lambda_handler(event, context):
